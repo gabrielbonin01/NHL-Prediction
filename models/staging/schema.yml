@@ -1,0 +1,32 @@
+@@ -0,0 +1,32 @@
+version: 2
+
+models:
+  - name: stg_game
+    description: "
+    - Spliting column OUTCOME to WINNER and REG_OT since the string contain 2 of the feature in the same place
+    - Removing column OUTCOME since we have the information in WINNER and REG_OT
+    - Removing colums VENUE_LINK because there is no information in this colums"
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique   
+sources:
+  - name: datalake
+    database: "NHL_PREDICTION"
+    schema: "DATA_LAKE"
+    tables:
+      - name: GAME
+      - name: GAME_GOALIE_STATS
+      - name: GAME_GOALS
+      - name: GAME_OFFICIALS
+      - name: GAME_PENALITIES
+      - name: GAME_PLAYS
+      - name: GAME_PLAYS_PLAYERS
+      - name: GAME_SCRATCHES
+      - name: GAME_SHIFTS
+      - name: GAME_SKATER_STATS
+      - name: GAME_TEAMS_STATS
+      - name: PLAYER_INFO
+      - name: TEAM_INFO
