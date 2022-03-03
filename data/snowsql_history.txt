@@ -1,0 +1,91 @@
+
+# 2022-03-01 16:39:49.878471
++use SCHEMA
++DATA_LAKE;
+
+# 2022-03-01 16:45:37.547260
++use warhouse TRANSFORM_WH;
+
+# 2022-03-01 16:45:59.595022
++use warehouse TRANSFORM_WH;
+
+# 2022-03-01 16:47:55.034538
++put file://game_goalie_stats.csv;
+
+# 2022-03-01 16:48:27.419097
++put file://game_goalie_stats.csv @This5;
+
+# 2022-03-01 16:49:20.897583
++add stage STAGETEST;
+
+# 2022-03-01 16:49:31.049002
++create stage STAGETEST;
+
+# 2022-03-01 16:49:43.449247
++put file://game_goalie_stats.csv @STAGETEST;
+
+# 2022-03-01 16:51:56.791822
++copy into GAME_GOALIE_STATS from @STAGETEST;
+
+# 2022-03-01 16:56:10.926761
++copy into GAME_GOALIE_STATS from @STAGETEST file_format = (format_name = This5);
+
+# 2022-03-01 17:09:29.502148
++put file://game_plays.csv @STAGETEST;
+
+# 2022-03-01 17:11:22.118293
++copy into GAME_PLAYS from @STAGETEST file_format = (format_name = This5);
+
+# 2022-03-01 17:20:11.159325
++drop STAGE STAGETEST;
+
+# 2022-03-01 17:20:31.111353
++create STAGE STAGETEST;
+
+# 2022-03-01 17:20:39.080097
++put file://game_plays.csv @STAGETEST;
+
+# 2022-03-01 17:21:34.224703
++copy into GAME_PLAYS from @STAGETEST file_format = (format_name = This5);
+
+# 2022-03-01 17:23:54.365843
++drop stage TESTSTAGE;
+
+# 2022-03-01 17:24:02.509711
++drop stage STAGETEST;
+
+# 2022-03-01 17:27:41.259585
++create STAGE STAGETEST;
+
+# 2022-03-01 17:28:12.276068
++put file://game_plays_players.csv @STAGETEST;
+
+# 2022-03-01 17:29:16.261362
++copy into GAME_PLAYS_PLAYERS from @STAGETEST file_format = (format_name = This5);
+
+# 2022-03-01 17:37:53.662326
++drop stage STAGETEST;
+
+# 2022-03-01 17:37:58.133731
++create STAGE STAGETEST;
+
+# 2022-03-01 17:38:25.318376
++put file://game_shifts.csv @STAGETEST;
+
+# 2022-03-01 17:39:59.662817
++copy into GAMES_SHIFTS from @STAGETEST file_format = (format_name = This5);
+
+# 2022-03-01 17:48:04.648169
++drop stage STAGETEST;
+
+# 2022-03-01 17:48:08.480720
++create STAGE STAGETEST;
+
+# 2022-03-01 17:48:33.576136
++put file://game_skater_stats.csv @STAGETEST;
+
+# 2022-03-01 17:49:11.753557
++copy into GAMES_SKATER_STATS from @STAGETEST file_format = (format_name = This5);
+
+# 2022-03-01 17:49:22.961034
++copy into GAME_SKATER_STATS from @STAGETEST file_format = (format_name = This5);

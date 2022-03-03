@@ -1,0 +1,6 @@
+version: 2
+
+
+macros:
+  - name: generate_schema_name
+    description: "Removing the target schemas to make a schema in Snowflake named by the config in dbt_project.yml"

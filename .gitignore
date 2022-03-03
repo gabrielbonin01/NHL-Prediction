@@ -2,3 +2,9 @@
 target/
 dbt_modules/
 logs/
+8842413
+data/csv_data/.ipynb_checkpoints/Data testing-checkpoint.ipynb
+data/csv_data/.ipynb_checkpoints/Data testing-checkpoint.ipynb
+data/csv_data/Data testing.ipynb
+data/csv_data/game.csv
+*.csv
