@@ -10,5 +10,4 @@
             {{ custom_schema_name | trim }}  
 
     {%- endif -%}
-
 {%- endmacro %}
