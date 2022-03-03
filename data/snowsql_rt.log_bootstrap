@@ -1,3 +1,4 @@
+
 2022-03-03 15:29:26,187 (2392/MainThread) snowflake.cli.common.util_cli DEBUG       util_cli:686  - Initialized logging. Log file '../snowsql_rt.log_bootstrap', Namespaces: ['snowflake.cli', 'snowflake.connector', 'botocore', 'azure', '__main__', 'eventloop', 'sqlexecute']
 2022-03-03 15:29:26,187 (2392/MainThread) snowflake.cli.common.util_cli DEBUG       util_cli:705  - cacert?: C:\Users\Gabri\AppData\Local\Temp\_MEI219762\base_library.zip\cacert.pem, C:\Users\Gabri\AppData\Local\Temp\_MEI219762\base_library.zip\certifi\cacert.pem
 2022-03-03 15:29:26,187 (2392/MainThread) snowflake.cli.common.util_cli DEBUG       util_cli:705  - cacert?: C:\Users\Gabri\AppData\Local\Temp\_MEI219762\cacert.pem, C:\Users\Gabri\AppData\Local\Temp\_MEI219762\certifi\cacert.pem
