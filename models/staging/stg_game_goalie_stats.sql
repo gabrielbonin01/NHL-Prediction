@@ -15,11 +15,15 @@ with source_datalake as (
         SHORT_HANDED_SHOTS_AGAINST,
         EVEN_SHOTS_AGAINST,
         POWERPLAY_SHOTS_AGAINST,
-        DECISION,
         SAVE_PERCENTAGE,
         POWERPLAY_SAVE_PERCENTAGE,
         EVEN_STRENGTH_SAVE_PERCENTAGE,
-        current_timestamp() as ingestion_timestamp
+        current_timestamp() as ingestion_timestamp,
+        case
+        WHEN DECISION is NULL THEN 'OUT OF GAME'
+        WHEN DECISION = 'W' THEN 'WIN GAME'
+        WHEN DECISION = 'L' THEN 'LOST GAME'
+        END as DECISION
     from {{ source('DATALAKE', 'GAME_GOALIE_STATS') }}       
 )
 
