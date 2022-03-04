@@ -11,6 +11,40 @@ models:
         tests:
           - not_null 
           - unique   
+  - name: stg_game_goalie_stats
+    description: "Having probleme With DESISION column will need to fill missing value with proper car W or L"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+  - name: stg_game_goals
+    description: "Having probleme With PLAY_ID. Column is as a string. Will need to take desision on what we do with it(might have to TRIM the '_')"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+
+  - name: stg_game_officials
+    description: "For now, the model is ^retty simple so we dont need to do some modification to this tab"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+
+
+
+
+
+
 sources:
   - name: DATALAKE
     database: "NHL_PREDICTION"
