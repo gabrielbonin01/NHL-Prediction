@@ -5,7 +5,8 @@ models:
     description: "
     - Spliting column OUTCOME to WINNER and REG_OT since the string contain 2 of the feature in the same place
     - Removing column OUTCOME since we have the information in WINNER and REG_OT
-    - Removing colums VENUE_LINK because there is no information in this colums"
+    - Removing colums VENUE_LINK because there is no information in this colums
+    - TO DO: Check for TEAM_ID > 54. This add ALLSTAR games for 2019-2020"
     columns:
       - name: id
         tests:
@@ -104,24 +105,6 @@ models:
         tests:
           - not_null 
           - unique 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 sources:
   - name: DATALAKE
