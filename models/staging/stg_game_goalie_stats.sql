@@ -6,7 +6,7 @@ with source_staging as (
         TIME_ON_ICE,
         ASSISTS,
         GOALS,
-        PIM
+        PIM,
         SHOTS,
         SAVES,
         POWER_PLAY_SAVES,
