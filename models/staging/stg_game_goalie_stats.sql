@@ -1,13 +1,13 @@
-with source_datalake as (
+with source_staging as (
         select 
         GAME_ID,
         PLAYER_ID,
         TEAM_ID,
-        TIME_ON_ICE as TIME_ON_ICE_GOALIE,
-        ASSISTS as ASSISTS_GOALIE,
-        GOALS as GOALS_GOALIE,
-        PIM as PIM_GOALIE,
-        SHOTS as SHOTS_GOALIE,
+        TIME_ON_ICE,
+        ASSISTS,
+        GOALS,
+        PIM
+        SHOTS,
         SAVES,
         POWER_PLAY_SAVES,
         SHORT_HANDED_SAVES,
@@ -28,7 +28,7 @@ with source_datalake as (
 )
 
 select *
-from source_datalake
+from source_staging
 
 
 
