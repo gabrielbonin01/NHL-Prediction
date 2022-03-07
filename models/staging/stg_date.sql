@@ -1,4 +1,4 @@
-with date as(
+with source_staging as(
 select 
     distinct(DATE_TIME_GMT),
     extract (year from DATE_TIME_GMT) as year,
@@ -17,4 +17,4 @@ from {{ source('DATALAKE', 'GAME') }}
 
 SELECT ROW_NUMBER() OVER (ORDER BY DATE_TIME_GMT) AS DATE_ID, *
 
-FROM date
+FROM source_staging
