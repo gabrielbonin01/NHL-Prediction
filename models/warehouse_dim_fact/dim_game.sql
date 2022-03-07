@@ -1,14 +1,9 @@
-with staging_warehouse as(
-select *,g.DATE_TIME_GMT as DATE_TIME
-from "NHL_PREDICTION"."STAGING_LAYER"."STG_GAME" as g
-inner join "NHL_PREDICTION"."STAGING_LAYER"."STG_DATE" as d
-where g.DATE_TIME_GMT= d.DATE_TIME_GMT
-)
-select 
+with staging_warehouse as (
+        select 
         GAME_ID,
         SEASON,
         GAME_TYPE,
-        DATE_TIME,
+        DATE_TIME_GMT,
         DATE_ID,
         AWAY_TEAM_ID,
         HOME_TEAM_ID,
@@ -21,5 +16,10 @@ select
         WINNER,
         REG_OT,
         current_timestamp() as ingestion_timestamp
+    from {{ ref('stg_game') }}
+)
 
+select *
 from staging_warehouse
+
+
