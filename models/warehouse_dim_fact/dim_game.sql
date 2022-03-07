@@ -1,4 +1,4 @@
-with source as(
+with staging_warehouse as(
 select *,g.DATE_TIME_GMT as DATE_TIME
 from "NHL_PREDICTION"."STAGING_LAYER"."STG_GAME" as g
 inner join "NHL_PREDICTION"."STAGING_LAYER"."STG_DATE" as d
@@ -22,4 +22,4 @@ select
         REG_OT,
         current_timestamp() as ingestion_timestamp
 
-from source
+from staging_warehouse
