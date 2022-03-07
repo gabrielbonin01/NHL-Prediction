@@ -18,13 +18,9 @@ with staging_warehouse as (
         SAVE_PERCENTAGE,
         POWERPLAY_SAVE_PERCENTAGE,
         EVEN_STRENGTH_SAVE_PERCENTAGE,
-        current_timestamp() as ingestion_timestamp,
-        case
-        WHEN DECISION is NULL THEN 'OUT OF GAME'
-        WHEN DECISION = 'W' THEN 'WIN GAME'
-        WHEN DECISION = 'L' THEN 'LOST GAME'
-        END as DECISION
-    from {{ ref('stg_game') }}
+        DECISION,
+        current_timestamp() as ingestion_timestamp
+    from {{ ref('stg_game_goalie_stats') }}
 )
 
 select *
