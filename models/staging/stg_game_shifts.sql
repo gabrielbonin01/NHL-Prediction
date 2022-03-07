@@ -1,4 +1,4 @@
-with source_datalake as (
+with source_staging as (
         select 
         GAME_ID,
         PLAYER_ID,
@@ -10,4 +10,4 @@ with source_datalake as (
 )
 
 select *
-from source_datalake
+from source_staging
