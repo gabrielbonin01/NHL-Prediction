@@ -40,3 +40,8 @@ models:
       +enabled: true
       +materialized: table
       +schema: staging_layer
+
+    warehouse_dim_fact:
+      +enabled: true
+      +materialized: table
+      +schema: warehouse_dim_fact
