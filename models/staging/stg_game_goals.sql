@@ -1,4 +1,4 @@
-with source_datalake as (
+with source_staging as (
         select 
         PLAY_ID,
         STRENGTH,
@@ -9,4 +9,4 @@ with source_datalake as (
 )
 
 select *
-from source_datalake
+from source_staging
