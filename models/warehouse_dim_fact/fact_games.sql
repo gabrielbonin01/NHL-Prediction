@@ -70,10 +70,9 @@ with staging_warehouse as (
         o.OFFICIAL_NAME,
         o.OFFICIAL_TYPE,
 
-
         pe.PENALTYSEVERITY,
         pe.PENALTYMINUTES,
-        
+
         pp.PLAYERTYPE,
 
         gsh.SHIFT_START_IN_SEC,
@@ -115,7 +114,6 @@ with staging_warehouse as (
         gst.BLOCKED_TEAM,
         gst.STARTRINKSIDE,
 
-
         pi.FIRST_NAME,
         pi.LAST_NAME,
         pi.NATIONALITY,
@@ -134,32 +132,36 @@ with staging_warehouse as (
         ti.ABBREVIATION,
         current_timestamp() as ingestion_timestamp
 
-    from {{ ref('stg_game') }} as g
-    left join {{ ref('stg_date') }} as d
+
+
+
+    from {{ ref('dim_game') }} as g
+    left join {{ ref('dim_date') }} as d
     on g.DATE_ID = d.DATE_ID
-    left join {{ ref('stg_game_goalie_stats') }} as gs 
+    left join {{ ref('dim_game_goalie_stats') }} as gs 
     on g.GAME_ID = gs.GAME_ID
     left join {{ ref('stg_game_plays') }} as p
     on gs.GAME_ID = p.GAME_ID
-    left join {{ ref('stg_game_goals') }} as go
+    left join {{ ref('dim_game_goals') }} as go
     on p.PLAY_ID = go.PLAY_ID
-    left join {{ ref('stg_game_officials') }} as o
+    left join {{ ref('dim_game_officials') }} as o
     on p.GAME_ID = o.GAME_ID
-    left join {{ ref('stg_game_penalities') }} as pe
+    left join {{ ref('dim_game_penalities') }} as pe
     on go.PLAY_ID = pe.PLAY_ID
-    left join {{ ref('stg_game_play_players') }} as pp
+    left join {{ ref('dim_game_play_players') }} as pp
     on pe.PLAY_ID = pp.PLAY_ID
-    left join {{ ref('stg_game_shifts') }} as gsh
+    left join {{ ref('dim_game_shifts') }} as gsh
     on pp.GAME_ID = gsh.GAME_ID
-    left join {{ ref('stg_game_skater_stats') }} as gss
+    left join {{ ref('dim_game_skater_stats') }} as gss
     on gsh.GAME_ID = gss.GAME_ID
-    left join {{ ref('stg_game_teams_stats') }} as gst
+    left join {{ ref('dim_game_teams_stats') }} as gst
     on gss.GAME_ID = gst.GAME_ID
-    left join {{ ref('stg_player_info') }} as pi
+    left join {{ ref('dim_player_info') }} as pi
     on pp.PLAYER_ID = pi.PLAYER_ID
-    left join {{ ref('stg_team_info') }} as ti
+    left join {{ ref('dim_team_info') }} as ti
     on gss.TEAM_ID = ti.TEAM_ID
     order by g.GAME_ID
+
 )    
 
 select * from staging_warehouse
