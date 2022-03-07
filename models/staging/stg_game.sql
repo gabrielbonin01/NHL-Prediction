@@ -18,8 +18,8 @@ with source_datalake as (
     from {{ source('DATALAKE', 'GAME') }}       
 )
 
-select *
-from source_datalake
+SELECT ROW_NUMBER() OVER (ORDER BY DATE_TIME_GMT) AS DATE_ID, *
 
+FROM source_datalake
 
 
