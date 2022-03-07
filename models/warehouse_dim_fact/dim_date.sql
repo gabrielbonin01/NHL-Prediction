@@ -8,7 +8,8 @@ with staging_warehouse as(
     WEEK,
     QUARTER,
     HOUR,
-    MINUTE ,
+    MINUTE,
+    current_timestamp() as ingestion_timestamp
 from {{ ref('stg_date') }}
 )
 
