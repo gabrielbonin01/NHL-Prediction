@@ -1,4 +1,4 @@
-with source_datalake as (
+with source_staging as (
         select 
         GAME_ID,
         SEASON,
@@ -20,6 +20,6 @@ with source_datalake as (
 
 SELECT ROW_NUMBER() OVER (ORDER BY DATE_TIME_GMT) AS DATE_ID, *
 
-FROM source_datalake
+FROM source_staging
 
 
