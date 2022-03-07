@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: fact_games
+    description: "
+    - Bring the date extract toguetter
+    - goalies leave the game and bring the scound one(thats why more row)
+    - Adding plays to each game(goals,faceoff,penality ..)
+    - Adding goals info to all play_id that = goals
+    - Adding the refferie to the games
+    - Adding penality info to all play_id that = goals
+    - Adding all info on what happen when the play happen(ex: all shot assist block when a penality is on)
+    - Adding all info on Player shit at the game
+    - Adding adding player stat info for all plays and games
+    - Adding adding Team stat info for all plays and games
+    - Adding players name, and info to ID*/
+    - Adding teams name and info"
