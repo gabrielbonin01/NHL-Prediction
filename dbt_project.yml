@@ -36,12 +36,15 @@ models:
   NHL_Prediction:
     # Config indicated by + and applies to all files under models/example/
 
+
+
     staging:
       +enabled: true
-      +materialized: table
+      +materialized: view
       +schema: staging_layer
 
     warehouse_dim_fact:
       +enabled: true
-      +materialized: table
+      +materialized: view
       +schema: warehouse_dim_fact
+    
