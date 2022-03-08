@@ -1,6 +1,7 @@
 with staging_warehouse as (
     select 
         GAME_ID,
+        TEAM_ID,
         HOA,
         WON,
         SETTLED_IN,
