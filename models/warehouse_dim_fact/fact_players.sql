@@ -85,13 +85,14 @@ with staging_warehouse as (
 
     from {{ ref('dim_game') }} as g
     left join {{ ref('dim_date') }} as d
-    on g.DATE_ID = d.DATE_ID
+    on g.DATE_TIME_GMT = d.DATE_TIME_GMT
     left join {{ ref('dim_game_goalie_stats') }} as gs 
     on g.GAME_ID = gs.GAME_ID
     left join {{ ref('dim_game_skater_stats') }} as gss
     on g.GAME_ID = gss.GAME_ID
     left join {{ ref('dim_player_info') }} as pi
     on gss.PLAYER_ID = pi.PLAYER_ID
+    order by g.GAME_ID
     
 
 )    
