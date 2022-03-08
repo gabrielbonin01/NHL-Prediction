@@ -1,6 +1,7 @@
 with source_staging as (
     select 
         GAME_ID,
+        TEAM_ID,
         HOA,
         WON,
         SETTLED_IN,
