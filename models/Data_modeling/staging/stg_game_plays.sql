@@ -2,8 +2,8 @@ with source_staging as (
         select 
         PLAY_ID,
         GAME_ID,
-        TEAM_ID_FOR as TEAM_ID_HOME,
-        TEAM_ID_AGAINST as TEAM_ID_AWAY,
+        TEAM_ID_FOR,
+        TEAM_ID_AGAINST,
         PLAY_EVENT,
         SECONDARY_TYPE,
         X,
