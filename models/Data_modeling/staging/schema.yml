@@ -1,0 +1,126 @@
+version: 2
+
+models:
+  - name: stg_game
+    description: "
+    - Spliting column OUTCOME to WINNER and REG_OT since the string contain 2 of the feature in the same place
+    - Removing column OUTCOME since we have the information in WINNER and REG_OT
+    - Removing colums VENUE_LINK because there is no information in this colums
+    - TO DO: Check for TEAM_ID > 54. This add ALLSTAR games for 2019-2020"
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique   
+  - name: stg_game_goalie_stats
+    description: "Had probleme with NULL value in column DECISION. After carful analysis, I figured out that A NULL value vas givin to a goalie that was out of the game(Maybe for bad play or injurie etc)
+    I took the Decision of renaming the feature for OUT OF GAME and Changin 'W' for WIN THE GAME and 'L' for LOST THE GAME."
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+  - name: stg_game_goals
+    description: "Having probleme With PLAY_ID. Column is as a string. Will need to take desision on what we do with it(might have to TRIM the '_')"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+
+  - name: stg_game_officials
+    description: "For now, the model is ^retty simple so we dont need to do some modification to this tab"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+  - name: stg_game_plays
+    description: "There is alot of null value here. I will have to Think About that we do with them since they are logical and not missing. Might also try to understand 
+    what the column  PLAYERTYPE mean because there are some weird value"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+  - name: stg_game_scratches
+    description: "This is pretty straight forward as a table. We get the information of player who are uninjured or a roster who does not dress for a game"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+  - name: stg_game_shifts
+    description: "This is pretty straight forward as a table. We get the information of player Shifts in secound when he goes on ice and come back for a changeup"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+  - name: stg_game_skater_stats
+    description: " We get the information of player STATS. Nothing to Change in this layer for now "
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+  - name: stg_game_teams_stats
+    description: "There is alot of NULL Values in the layer. It looks like those value missing from a bad API call or somthing else. 
+    We have NULL value in [HITS,FACEOFF_WIN_PERCENTAGE,GIVEAWAYS,TAKEAWAYS,BLOCKED,STARTRINKSIDE]. We need to make a disision on what we gonna do with them later"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+  - name: stg_player_info
+    description: "There is a couple of null values in this layer bit very little. i Think i could fill them myself later with a littlebit of reserch. TO do list"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+  - name: stg_team_info
+    description: "Simple table with the 33 team. I removed column LINK because there nothing informative if this feature"
+
+    columns:
+      - name: id
+        tests:
+          - not_null 
+          - unique 
+
+sources:
+  - name: DATALAKE
+    database: "NHL_PREDICTION"
+    schema: "DATA_LAKE"
+    tables:
+      - name: GAME
+      - name: GAME_GOALIE_STATS
+      - name: GAME_GOALS
+      - name: GAME_OFFICIALS
+      - name: GAME_PENALITIES
+      - name: GAME_PLAYS
+      - name: GAME_PLAYS_PLAYERS
+      - name: GAME_SCRATCHES
+      - name: GAME_SHIFTS
+      - name: GAME_SKATER_STATS
+      - name: GAME_TEAMS_STATS
+      - name: PLAYER_INFO
+      - name: TEAM_INFO
