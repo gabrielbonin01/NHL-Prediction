@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 with staging_warehouse as (
     select 
 
