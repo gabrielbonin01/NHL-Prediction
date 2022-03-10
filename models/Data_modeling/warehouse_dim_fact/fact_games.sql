@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 with staging_warehouse as (
     select 
 
@@ -64,7 +62,7 @@ with staging_warehouse as (
         p.PLAY_DESCRIPTION,
         p.ST_X,
         p.ST_Y,
-       
+        
         go.STRENGTH,
         go.GAMEWINNINGGOAL,
         go.EMPTYNET,
@@ -78,9 +76,9 @@ with staging_warehouse as (
         pp.PLAYERTYPE,
 
         gsh.SHIFT_START_IN_SEC,
-        gsh.SHIFT_END_IN_SEC
+        gsh.SHIFT_END_IN_SEC,
 
-       /* gss.TIME_ON_ICE_SKATER,
+        gss.TIME_ON_ICE_SKATER,
         gss.ASSISTS_SKATER,
         gss.GOALS_SKATER,
         gss.SHOTS_SKATER,
@@ -134,7 +132,7 @@ with staging_warehouse as (
         ti.ABBREVIATION,
         current_timestamp() as ingestion_timestamp
 
-*/
+
 
 
     from {{ ref('dim_game') }} as g
@@ -147,26 +145,23 @@ with staging_warehouse as (
     left join {{ ref('dim_game_goals') }} as go
     on p.PLAY_ID = go.PLAY_ID
     left join {{ ref('dim_game_officials') }} as o
-    on g.GAME_ID = o.GAME_ID
+    on p.GAME_ID = o.GAME_ID
     left join {{ ref('dim_game_penalities') }} as pe
-    on p.PLAY_ID = pe.PLAY_ID
+    on go.PLAY_ID = pe.PLAY_ID
     left join {{ ref('dim_game_play_players') }} as pp
-    on p.PLAY_ID = pp.PLAY_ID
+    on pe.PLAY_ID = pp.PLAY_ID
     left join {{ ref('dim_game_shifts') }} as gsh
-    on g.GAME_ID = gsh.GAME_ID
-    /*left join {{ ref('dim_game_skater_stats') }} as gss
+    on pp.GAME_ID = gsh.GAME_ID
+    left join {{ ref('dim_game_skater_stats') }} as gss
     on gsh.GAME_ID = gss.GAME_ID
     left join {{ ref('dim_game_teams_stats') }} as gst
     on gss.GAME_ID = gst.GAME_ID
     left join {{ ref('dim_player_info') }} as pi
     on gss.PLAYER_ID = pi.PLAYER_ID
     left join {{ ref('dim_team_info') }} as ti
-    on gst.TEAM_ID = ti.TEAM_ID*/
+    on gst.TEAM_ID = ti.TEAM_ID
     order by g.GAME_ID
-
-
 
 )    
 
 select * from staging_warehouse
-limit 1000
