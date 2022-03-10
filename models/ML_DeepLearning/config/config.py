@@ -1,0 +1,6 @@
+username: 'transform_user'
+password: 'Canada123!'
+account: 'eu24715.us-central1.gcp'
+role: 'transform_role'
+database: 'NHL_PREDICTION'
+warehouse: 'transform_wh'
