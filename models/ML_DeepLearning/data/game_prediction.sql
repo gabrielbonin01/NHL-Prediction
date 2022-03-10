@@ -1,0 +1,1 @@
+select * from  "NHL_PREDICTION"."STAGING_LAYER"."STG_DATE"
